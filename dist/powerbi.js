@@ -24,7 +24,8 @@ return /******/ (() => { // webpackBootstrap
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
-	else {}
+	else // removed by dead control flow
+{}
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -209,7 +210,8 @@ return /******/ (function(modules) { // webpackBootstrap
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
-	else {}
+	else // removed by dead control flow
+{}
 })(this, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ([
@@ -6040,7 +6042,8 @@ exports.PaginatedReportDatasetBindingValidator = PaginatedReportDatasetBindingVa
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
-	else {}
+	else // removed by dead control flow
+{}
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -6849,6 +6852,18 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=router.js.map
+
+/***/ }),
+
+/***/ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js ***!
+  \*******************************************************************************/
+/***/ ((module) => {
+
+/*! For license information please see windowPostMessageProxy.js.LICENSE.txt */
+!function(e,r){ true?module.exports=r():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var r=e;Object.defineProperty(r,"__esModule",{value:!0}),r.WindowPostMessageProxy=void 0;var s=function(){function e(r){void 0===r&&(r={processTrackingProperties:{addTrackingProperties:e.defaultAddTrackingProperties,getTrackingProperties:e.defaultGetTrackingProperties},isErrorMessage:e.defaultIsErrorMessage,receiveWindow:window,name:e.createRandomString()});var s=this;this.pendingRequestPromises={},this.addTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.addTrackingProperties||e.defaultAddTrackingProperties,this.getTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.getTrackingProperties||e.defaultGetTrackingProperties,this.isErrorMessage=r.isErrorMessage||e.defaultIsErrorMessage,this.receiveWindow=r.receiveWindow||window,this.name=r.name||e.createRandomString(),this.logMessages=r.logMessages||!1,this.eventSourceOverrideWindow=r.eventSourceOverrideWindow,this.suppressWarnings=r.suppressWarnings||!1,this.logMessages&&console.log("new WindowPostMessageProxy created with name: ".concat(this.name," receiving on window: ").concat(this.receiveWindow.document.title)),this.handlers=[],this.windowMessageHandler=function(e){return s.onMessageReceived(e)},this.start()}return e.defaultAddTrackingProperties=function(r,s){return r[e.messagePropertyName]=s,r},e.defaultGetTrackingProperties=function(r){return r[e.messagePropertyName]},e.defaultIsErrorMessage=function(e){return!!e.error},e.createDeferred=function(){var e={resolve:null,reject:null,promise:null},r=new Promise((function(r,s){e.resolve=r,e.reject=s}));return e.promise=r,e},e.createRandomString=function(){var e=window.crypto||window.msCrypto,r=new Uint32Array(1);return e.getRandomValues(r),r[0].toString(36).substring(1)},e.prototype.addHandler=function(e){this.handlers.push(e)},e.prototype.removeHandler=function(e){var r=this.handlers.indexOf(e);if(-1===r)throw new Error("You attempted to remove a handler but no matching handler was found.");this.handlers.splice(r,1)},e.prototype.start=function(){this.receiveWindow.addEventListener("message",this.windowMessageHandler)},e.prototype.stop=function(){this.receiveWindow.removeEventListener("message",this.windowMessageHandler)},e.prototype.postMessage=function(r,s){var n={id:e.createRandomString()};this.addTrackingProperties(s,n),this.logMessages&&(console.log("".concat(this.name," Posting message:")),console.log(JSON.stringify(s,null,"  "))),r.postMessage(s,"*");var o=e.createDeferred();return this.pendingRequestPromises[n.id]=o,o.promise},e.prototype.sendResponse=function(e,r,s){this.addTrackingProperties(r,s),this.logMessages&&(console.log("".concat(this.name," Sending response:")),console.log(JSON.stringify(r,null,"  "))),e.postMessage(r,"*")},e.prototype.onMessageReceived=function(e){var r=this;this.logMessages&&(console.log("".concat(this.name," Received message:")),console.log("type: ".concat(e.type)),console.log(JSON.stringify(e.data,null,"  ")));var s=this.eventSourceOverrideWindow||e.source;if(s){var n=e.data;if("object"==typeof n){var o,t;try{o=this.getTrackingProperties(n)}catch(e){this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Error occurred when attempting to get tracking properties from incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(o&&(t=this.pendingRequestPromises[o.id]),t){var i=!0;try{i=this.isErrorMessage(n)}catch(e){console.warn("Proxy(".concat(this.name,") Error occurred when trying to determine if message is consider an error response. Message: "),JSON.stringify(n,null,""),"Error: ",e)}i?t.reject(n):t.resolve(n),delete this.pendingRequestPromises[o.id]}else this.handlers.some((function(e){var t=!1;try{t=e.test(n)}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was testing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(t){var i=void 0;try{i=Promise.resolve(e.handle(n))}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was processing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e),i=Promise.resolve()}return i.then((function(e){if(!e){var t="Handler for message: ".concat(JSON.stringify(n,null,"  ")," did not return a response message. The default response message will be returned instead.");r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): ").concat(t)),e={warning:t}}r.sendResponse(s,e,o)})),!0}}))||this.suppressWarnings||console.warn("Proxy(".concat(this.name,") did not handle message. Handlers: ").concat(this.handlers.length,"  Message: ").concat(JSON.stringify(n,null,""),"."))}else this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message that was not an object. Discarding message"))}},e.messagePropertyName="windowPostMessageProxy",e}();r.WindowPostMessageProxy=s})(),e})()));
+//# sourceMappingURL=windowPostMessageProxy.js.map
 
 /***/ }),
 
@@ -12604,6 +12619,7 @@ var Visual = /** @class */ (function (_super) {
      * @hidden
      */
     Visual.prototype.load = function (phasedRender) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         var config = this.config;
         if (!config.accessToken) {
             // bootstrap flow.
@@ -12647,9 +12663,9 @@ var Visual = /** @class */ (function (_super) {
         config.settings.navContentPaneEnabled = false;
         config.settings.layoutType = powerbi_models_1.LayoutType.Custom;
         config.settings.customLayout = {
-            displayOption: powerbi_models_1.DisplayOption.FitToPage,
-            pageSize: pageSize,
-            pagesLayout: pagesLayout
+            displayOption: (_c = (_b = (_a = config.settings) === null || _a === void 0 ? void 0 : _a.customLayout) === null || _b === void 0 ? void 0 : _b.displayOption) !== null && _c !== void 0 ? _c : powerbi_models_1.DisplayOption.FitToPage,
+            pageSize: (_f = (_e = (_d = config.settings) === null || _d === void 0 ? void 0 : _d.customLayout) === null || _e === void 0 ? void 0 : _e.pageSize) !== null && _f !== void 0 ? _f : pageSize,
+            pagesLayout: (_j = (_h = (_g = config.settings) === null || _g === void 0 ? void 0 : _g.customLayout) === null || _h === void 0 ? void 0 : _h.pagesLayout) !== null && _j !== void 0 ? _j : pagesLayout
         };
         this.config = config;
         return _super.prototype.load.call(this, phasedRender);
@@ -13314,18 +13330,6 @@ var VisualDescriptor = /** @class */ (function () {
 exports.VisualDescriptor = VisualDescriptor;
 
 
-/***/ }),
-
-/***/ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js ***!
-  \*******************************************************************************/
-/***/ ((module) => {
-
-/*! For license information please see windowPostMessageProxy.js.LICENSE.txt */
-!function(e,r){ true?module.exports=r():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var r=e;Object.defineProperty(r,"__esModule",{value:!0}),r.WindowPostMessageProxy=void 0;var s=function(){function e(r){void 0===r&&(r={processTrackingProperties:{addTrackingProperties:e.defaultAddTrackingProperties,getTrackingProperties:e.defaultGetTrackingProperties},isErrorMessage:e.defaultIsErrorMessage,receiveWindow:window,name:e.createRandomString()});var s=this;this.pendingRequestPromises={},this.addTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.addTrackingProperties||e.defaultAddTrackingProperties,this.getTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.getTrackingProperties||e.defaultGetTrackingProperties,this.isErrorMessage=r.isErrorMessage||e.defaultIsErrorMessage,this.receiveWindow=r.receiveWindow||window,this.name=r.name||e.createRandomString(),this.logMessages=r.logMessages||!1,this.eventSourceOverrideWindow=r.eventSourceOverrideWindow,this.suppressWarnings=r.suppressWarnings||!1,this.logMessages&&console.log("new WindowPostMessageProxy created with name: ".concat(this.name," receiving on window: ").concat(this.receiveWindow.document.title)),this.handlers=[],this.windowMessageHandler=function(e){return s.onMessageReceived(e)},this.start()}return e.defaultAddTrackingProperties=function(r,s){return r[e.messagePropertyName]=s,r},e.defaultGetTrackingProperties=function(r){return r[e.messagePropertyName]},e.defaultIsErrorMessage=function(e){return!!e.error},e.createDeferred=function(){var e={resolve:null,reject:null,promise:null},r=new Promise((function(r,s){e.resolve=r,e.reject=s}));return e.promise=r,e},e.createRandomString=function(){var e=window.crypto||window.msCrypto,r=new Uint32Array(1);return e.getRandomValues(r),r[0].toString(36).substring(1)},e.prototype.addHandler=function(e){this.handlers.push(e)},e.prototype.removeHandler=function(e){var r=this.handlers.indexOf(e);if(-1===r)throw new Error("You attempted to remove a handler but no matching handler was found.");this.handlers.splice(r,1)},e.prototype.start=function(){this.receiveWindow.addEventListener("message",this.windowMessageHandler)},e.prototype.stop=function(){this.receiveWindow.removeEventListener("message",this.windowMessageHandler)},e.prototype.postMessage=function(r,s){var n={id:e.createRandomString()};this.addTrackingProperties(s,n),this.logMessages&&(console.log("".concat(this.name," Posting message:")),console.log(JSON.stringify(s,null,"  "))),r.postMessage(s,"*");var o=e.createDeferred();return this.pendingRequestPromises[n.id]=o,o.promise},e.prototype.sendResponse=function(e,r,s){this.addTrackingProperties(r,s),this.logMessages&&(console.log("".concat(this.name," Sending response:")),console.log(JSON.stringify(r,null,"  "))),e.postMessage(r,"*")},e.prototype.onMessageReceived=function(e){var r=this;this.logMessages&&(console.log("".concat(this.name," Received message:")),console.log("type: ".concat(e.type)),console.log(JSON.stringify(e.data,null,"  ")));var s=this.eventSourceOverrideWindow||e.source;if(s){var n=e.data;if("object"==typeof n){var o,t;try{o=this.getTrackingProperties(n)}catch(e){this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Error occurred when attempting to get tracking properties from incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(o&&(t=this.pendingRequestPromises[o.id]),t){var i=!0;try{i=this.isErrorMessage(n)}catch(e){console.warn("Proxy(".concat(this.name,") Error occurred when trying to determine if message is consider an error response. Message: "),JSON.stringify(n,null,""),"Error: ",e)}i?t.reject(n):t.resolve(n),delete this.pendingRequestPromises[o.id]}else this.handlers.some((function(e){var t=!1;try{t=e.test(n)}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was testing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(t){var i=void 0;try{i=Promise.resolve(e.handle(n))}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was processing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e),i=Promise.resolve()}return i.then((function(e){if(!e){var t="Handler for message: ".concat(JSON.stringify(n,null,"  ")," did not return a response message. The default response message will be returned instead.");r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): ").concat(t)),e={warning:t}}r.sendResponse(s,e,o)})),!0}}))||this.suppressWarnings||console.warn("Proxy(".concat(this.name,") did not handle message. Handlers: ").concat(this.handlers.length,"  Message: ").concat(JSON.stringify(n,null,""),"."))}else this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message that was not an object. Discarding message"))}},e.messagePropertyName="windowPostMessageProxy",e}();r.WindowPostMessageProxy=s})(),e})()));
-//# sourceMappingURL=windowPostMessageProxy.js.map
-
 /***/ })
 
 /******/ 	});
@@ -13356,7 +13360,7 @@ exports.VisualDescriptor = VisualDescriptor;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it uses a non-standard name for the exports (exports).
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 (() => {
 var exports = __webpack_exports__;
 /*!*******************************!*\
