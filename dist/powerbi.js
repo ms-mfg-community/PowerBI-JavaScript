@@ -12267,7 +12267,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.validateEmbedUrl = exports.isCreate = exports.getTimeDiffInMilliseconds = exports.getRandomValue = exports.autoAuthInEmbedUrl = exports.isRDLEmbed = exports.isSavedInternal = exports.addParamToUrl = exports.generateUUID = exports.createRandomString = exports.assign = exports.remove = exports.find = exports.findIndex = exports.raiseCustomEvent = void 0;
+exports.validateEmbedUrl = exports.calculatePercentage = exports.isCreate = exports.getTimeDiffInMilliseconds = exports.getRandomValue = exports.autoAuthInEmbedUrl = exports.isRDLEmbed = exports.isSavedInternal = exports.addParamToUrl = exports.generateUUID = exports.createRandomString = exports.assign = exports.remove = exports.find = exports.findIndex = exports.raiseCustomEvent = void 0;
 /**
  * @hidden
  */
@@ -12510,7 +12510,23 @@ function isCreate(embedType) {
 }
 exports.isCreate = isCreate;
 /**
+ * Calculates percentage based on a part and total value
+ *
+ * @export
+ * @param {number} part - The part value
+ * @param {number} total - The total value
+ * @returns {number} The percentage value, or 0 if total is 0
+ */
+function calculatePercentage(part, total) {
+    if (total === 0) {
+        return 0;
+    }
+    return (part / total) * 100;
+}
+exports.calculatePercentage = calculatePercentage;
+/**
  * Checks if the embedUrl has an allowed power BI domain
+ *
  * @hidden
  */
 function validateEmbedUrl(embedUrl) {

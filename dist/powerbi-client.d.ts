@@ -126,7 +126,17 @@ declare module "util" {
      */
     export function isCreate(embedType: string): boolean;
     /**
+     * Calculates percentage based on a part and total value
+     *
+     * @export
+     * @param {number} part - The part value
+     * @param {number} total - The total value
+     * @returns {number} The percentage value, or 0 if total is 0
+     */
+    export function calculatePercentage(part: number, total: number): number;
+    /**
      * Checks if the embedUrl has an allowed power BI domain
+     *
      * @hidden
      */
     export function validateEmbedUrl(embedUrl: string): boolean;
